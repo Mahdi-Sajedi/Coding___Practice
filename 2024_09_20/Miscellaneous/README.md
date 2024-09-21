@@ -14,7 +14,9 @@ The Myth machines run a flavor of the Linux operating system. So yes, technicall
 
 The Myth machines use what's called the [Andrew File System](https://en.wikipedia.org/wiki/Andrew_File_System).
 
-* Assignment 1: [SAXPY program](https://github.com/stanford-cs149/asst1/tree/master/prog5_saxpy)
+# Assignment 1 of CS149 Fall 2023
+
+## [SAXPY program](https://github.com/stanford-cs149/asst1/tree/master/prog5_saxpy)
 
 we want to perform ```result[i] = scale*X[i] + Y[i]``` for ```i = 0, ..., 20M``` and there is an interesting hardware-level phenomena. We load X[i] and Y[i] and compute result[i]. Because of ho modern CPUs work, upon writing to memory, is result[i] is not in cache, we first load cache line (64 bytes; e.g. 16 floats) to cache and then do the computation in cache and then write back the whole cache line to memory. The technical term is write-allocate policy (vs no-write-allocate policy). Here is ChatGPT talking:
 ```
@@ -27,3 +29,38 @@ Thus, when writing to result[i], the CPU:
 - Loads the cache line containing result[i] (even though it's writing, not reading).
 - Writes the modified value back to memory.
 ```
+## [K-means Program](https://github.com/stanford-cs149/asst1/tree/master/prog6_kmeans)
+- k-means as an example of running EM: (CS221 notes)[https://stanford.edu/~cpiech/cs221/handouts/kmeans.html]
+
+A modified (threaded) version of [computing cluster assigments](https://github.com/baiyazi233/Stanford-CS149----Assignment-1/blob/master/prog6_kmeans/kmeansThread.cpp#L67-L89)
+```cpp
+void computeAssignmentsParallel(WorkerArgs *args, int start, int end) {
+    double *minDist = new double[args->M];
+
+    // Initialize arrays
+    for (int m = start; m < end; m++) {
+        minDist[m] = 1e30;  // A large initial distance
+        args->clusterAssignments[m] = -1;  // No assignment yet
+    }
+
+    // Assign datapoints to closest centroids
+    for (int m = start; m < end; m++) {
+        for (int k = 0; k < args->K; k++) {  // All centroids must be considered
+            double d = dist(&args->data[m * args->N],  // Data point
+                            &args->clusterCentroids[k * args->N],  // Centroid
+                            args->N);  // Dimensionality of points/centroids
+            if (d < minDist[m]) {
+                minDist[m] = d;
+                args->clusterAssignments[m] = k;  // Assign closest centroid
+            }
+        }
+    }
+
+    free(minDist);
+}
+
+```
+
+# Digger Directory:
+
+- [Chris Piech](https://stanford.edu/~cpiech/bio/index.html)
