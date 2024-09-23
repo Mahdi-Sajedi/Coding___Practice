@@ -75,3 +75,74 @@ with the class itself.
 • a static variable named count in the Student class would be referred to as Student.count. 
 
 ### System.out is a static variable out in the System class that represents standard output.
+
+• Game Design example:  the Monster class contains a *static* Monster.roar variable, and all the monster objects share that one variable for playing roar.mp3
+
+• Math.max(a, b): max() is a **static** method in Math class
+
+• s.getStress(): getStress() is a **regular** method and s points to an Student object.
+
+• s.foo() compiles fine, but it discards s as a receiver, using its compile time type to determine which class to use and translating the call to the Student.foo() form
+
+```java
+public class Student {
+ private int units; // units ivar for each Student
+ // Define a static int counter
+ // to count the number of students.
+ // Assign it an initial value right here.
+ private static int numStudents = 0;
+ public Student(int init_units) {
+ units = init_units;
+ // Increment the counter
+ Student.numStudents++;
+ // (could write equivalently as numStudents++)
+ }
+ public static int getNumStudents() {
+ // Clients invoke this method as Student.getNumStudents();
+ // Does not execute against a receiver, so
+ // there is no "units" to refer to here
+ return Student.numStudents;
+ }
+ // rest of the Student class
+ ...
+} 
+```
+ChatGPT: This approach follows the principle of encapsulation, where you hide the internal state of an object (like numStudents) and provide controlled access through methods (like getNumStudents()).
+
+## Files
+
+• InputStream and OuputStream are the fundamental superclasses.
+
+• The classes with "reader" or "writer" in the name deal with text files, e.g. FileReader, BufferedReader.
+
+• For non-text data files (such as jpeg, png, mp3) use FileInputStream, FileOutputStream,
+BufferedInputStream, BufferedOutputStream -- these treat the file as a plain sequence of
+bytes.
+
+• You can specify a unicode encoding to be used by the text readers and writers -- defines the translation between the bytes of the file and the **2-byte** unicode encoding of Java chars.
+
+### Exception
+
+•
+```java
+ try {
+ stmt();
+ stmt();
+ stmt();
+ stmt();
+}
+catch (Exception ex) {
+ ex.printStackTrace();
+ System.exit(1);
+}
+```
+
+•  As a simple default strategy, put a printStackTrace() in the catch so you get an indication of what happened
+
+• When an exception is thrown at runtime, it
+looks for the first matching catch (...) clause -- so catch (Exception e) would catch any type of
+exception, but catch (IOException e) would catch only IOExceptions.
+
+•
+
+•
