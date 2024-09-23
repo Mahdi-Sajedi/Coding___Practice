@@ -57,7 +57,21 @@ Java
 
   • The java command runs a program, and the argument is the class that contains main()
 
--  Command line classpath
+- Command line classpath
 
-  • javac -classpath foo.jar:/some/dir:. Bar.java 
-  
+  • javac -classpath foo.jar:/some/dir:. Bar.java
+
+- Run time classpath
+
+  • Summary: the compile time classpath used to check classes during compilation, does not link them in. The run time classpath is used to find and load classes as they are referenced during the run
+
+- Arguments: ```> java Foo aaa bbb``` aaa and bbb are arguments
+
+## Static
+
+• Static variables and methods are not associated with an object of the class. Instead, they are associated
+with the class itself.
+
+• a static variable named count in the Student class would be referred to as Student.count. 
+
+### System.out is a static variable out in the System class that represents standard output.
