@@ -51,7 +51,13 @@ Java
 
 - Java Command Line
 
-   • The command line java compiler is called javac
+  • The command line java compiler is called javac
    
-   • Foo$Bar.class contains the bytecode for a Bar class defined inside of Foo
+  • Foo$Bar.class contains the bytecode for a Bar class defined inside of Foo
+
+  • The java command runs a program, and the argument is the class that contains main()
+
+-  Command line classpath
+
+  • javac -classpath foo.jar:/some/dir:. Bar.java 
   
