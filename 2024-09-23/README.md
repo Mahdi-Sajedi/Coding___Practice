@@ -143,6 +143,62 @@ catch (Exception ex) {
 looks for the first matching catch (...) clause -- so catch (Exception e) would catch any type of
 exception, but catch (IOException e) would catch only IOExceptions.
 
-•
+• In Java code, if there is a method call like in.readLine() that can throw an exception, then the compiler
+will insist that the calling code deal with the exception, typically with a try/catch block. This can be
+annoying, since the compiler forces you to put in a try/catch when you don't want to think about that case.
+However, this strict structure is one of the things that **makes Java code reliable in production**
 
-•
+• unchecked exceptions: out of bounds, null pointer
+  
+  all other "checked" exceptions need try/catch block, otherwise code won't compile
+
+## Java Collections
+
+- List, Set, Map
+  
+  • List is a general interface, and ArrayList and LinkedList are implementing classes. ArrayList is the best general purpose List
+
+  • Lists can only store objects, like String and Integer, but not primitives like int. Another way to say this is that the collection classes can only
+store pointers.
+
+  • ```List<String> words = new ListArray<String>();``` -> ```words.add("This");``` -> ```words.size();``` -> ```words.get(0)```
+
+  • The size() method returns the int size of a list (or any collection)
+
+  • ```List<String> words2 = new ArrayList<String>(words);``` copies the pointers in words List to words2 (just like words2 = words)
+
+  •  ```List<Object>``` can contain objects of different types, since all classes in Java inherit from Object.
+
+       • Python is Dynamically typed so lists can contain different objects by default.
+
+  •  subList(int fromIndex, int toIndex) example below
+  
+```java
+ // colors2 is {"red", "green", "blue", "pink"}
+ // Use subList() to make a "front" List showing just elements 0, 1, 2 of colors2.
+ List front = colors2.subList(0, 3);
+ System.out.println("front " + front); // [red, green, blue]
+ // front is {"red", "green", "blue"}
+
+ // Can make changees to front, and they go through to underlying colors2,
+ // but do not make changes to colors2 while using front.
+
+ front.contains("green"); // true
+ front.remove("green");
+ front.add("orange");
+ // front is {"red", "blue", "orange"}
+ // colors2 is {"red", "blue", "orange", "pink"}
+```
+  • Iterator example
+
+```java
+// Suppose we have a "words" list of strings:
+List words = new ArrayList(); // create a list of strings
+
+Iterator<String> it = words.iterator();
+while (it.hasNext()) {
+ String str = it.next();
+ // Do something with str
+}
+```
+  
