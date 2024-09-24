@@ -214,4 +214,16 @@ while (it.hasNext()) {
 
   • There is a more powerful type of iterator, the ListIterator, which works for list types, but not other collection types. The ListIterator can go forwards and backwards and can insert and delete. The ListIterator is powerful but more rarely used. Loop foreach and Iterator goes far enough for most use cases.
 
-  
+- Boxing/unboxing/autoboxing example: conversion between int value and Integer object.
+
+```java
+// Auto unboxing DOES NOT WORK with == -- this code is wrong.
+ if (nums.get(0) == 126) {
+ System.out.println("found 126");
+ }
+
+ // Use .intValue() to unbox manually -- this code is correct.
+ if (nums.get(0).intValue() == 126) {
+ System.out.println("found 126");
+ }
+```
