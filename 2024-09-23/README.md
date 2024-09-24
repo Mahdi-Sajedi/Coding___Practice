@@ -189,7 +189,7 @@ store pointers.
  // front is {"red", "blue", "orange"}
  // colors2 is {"red", "blue", "orange", "pink"}
 ```
-  • Iterator example
+  • Iterator example below.  Code that uses iteration must not modify the collection during the iteration.
 
 ```java
 // Suppose we have a "words" list of strings:
@@ -201,4 +201,17 @@ while (it.hasNext()) {
  // Do something with str
 }
 ```
+```java
+// words is: {"this", "and", "that"}
+// Remove words length 4 or more.
+Iterator<String> it = words.iterator();
+while (it.hasNext()) {
+ String str = it.next();
+ if (str.length() >= 4) it.remove();
+}
+// words is: {"and"}
+```
+
+  • There is a more powerful type of iterator, the ListIterator, which works for list types, but not other collection types. The ListIterator can go forwards and backwards and can insert and delete. The ListIterator is powerful but more rarely used. Loop foreach and Iterator goes far enough for most use cases.
+
   
