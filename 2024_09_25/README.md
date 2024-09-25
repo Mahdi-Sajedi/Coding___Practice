@@ -16,3 +16,15 @@ People:
 # Intuit:
 
 - Data Science Intern Summer 2025 (ID 2024-63770 Category Data)
+
+# Aptiv:
+
+[Autonomous Driving Algorithm Intern](https://aptiv.wd5.myworkdayjobs.com/en-US/APTIV_CAREERS/job/Autonomous-Driving-Algorithm-Intern_J000671921)
+
+location: Troi, MI
+
+# KLA
+
+[Algorithm Engineering Intern (Image Processing)](https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Algorithm-Engineering-Intern--Image-Processing-_2424599-1)
+
+Location: Ann Arbor
