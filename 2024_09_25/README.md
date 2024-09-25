@@ -1,6 +1,18 @@
-Applied to ML internship at Pinterest
+## Applied to:
 
-people reached out to:
+# ML internship at Pinterest
 
-- Keyvan Moghadam: [Linkedin](https://www.linkedin.com/in/keyvanrm/)
-  
+people:
+
+- Keyvan Moghadam (linkedin message): [Linkedin](https://www.linkedin.com/in/keyvanrm/)
+
+
+# Databricks
+
+People:
+
+- Peter Park: [Linkedin](https://www.linkedin.com/in/pckpark/)
+
+# Intuit:
+
+- Data Science Intern Summer 2025 (ID 2024-63770 Category Data)
