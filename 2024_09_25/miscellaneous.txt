@@ -1,1 +1,7 @@
+Stanford CS25
 
+I will introduce the topic, survey recent literature on retrieval augmented language models and finish with some of the main open questions.
+
+https://www.youtube.com/watch?v=mE7IDf2SmJg
+
+Comment: Good lecture, offers a good summary of the literature on RAG.
