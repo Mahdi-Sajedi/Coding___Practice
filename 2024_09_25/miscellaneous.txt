@@ -4,4 +4,11 @@ I will introduce the topic, survey recent literature on retrieval augmented lang
 
 https://www.youtube.com/watch?v=mE7IDf2SmJg
 
-Comment: Good lecture, offers a good summary of the literature on RAG.
+Comments: 
+
+Good lecture, offers a good summary of the literature on RAG.
+
+Hi, about Atlas. You said that we can update the Retriever. At 42:00 is some retriever loss, but what about pair label (question, positive paragraph, negative paragraphs) like normal retrieval model - do they contribute to the retriever loss ? I read codebase of Atlas, and do not find that kind of loss
+
+
+https://github.com/facebookresearch/atlas/blob/main/train.py
