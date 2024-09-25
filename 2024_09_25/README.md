@@ -49,3 +49,13 @@ Experience with augmented and virtual reality development environments: Unity or
  
 Ability to obtain a Q clearance, which typically requires U.S. citizenship
 
+# PGD Computer Science Intern - NEER (NextEra energy resources)
+
+This role is not open for sponsorship now or in the future. It is the applicant’s responsibility to obtain and maintain work authorization throughout their employment with the company
+
+# The Johns Hopkins University Applied Physics Laboratory
+
+To access APL’s facilities and networks, US Citizenship or permanent resident status is required, subject to applicable laws.
+
+
+
