@@ -79,3 +79,10 @@ string key = to_string(r) + "aryan" + to_string(c) + "mittal" + to_string(moves)
 if(mp.find(key) != mp.end())
     return mp[key];
 ```
+
+Also a [note](https://stackoverflow.com/questions/27581320/using-memset-in-double-type-array) of caution on memsetting a double array: 
+
+- memsetting a double array with a non-double value won't work. 
+- From the man page of memset:
+
+       The memset() function fills the first n bytes of the memory area pointed to by s with the constant byte c.
