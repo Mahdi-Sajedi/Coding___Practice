@@ -38,3 +38,8 @@ For C++ questions (like what does the virtual keyword mean), the [C++ Super-FAQ]
 [__global__](https://github.com/stanford-cs149/asst3/blob/master/saxpy/saxpy.cu#L16-L17)
 
 [CS149 TODO: allocate device memory buffers on the GPU using cudaMalloc](https://github.com/stanford-cs149/asst3/blob/master/saxpy/saxpy.cu#L72-L76)
+
+About Mark Harris
+Mark is an NVIDIA Distinguished Engineer working on RAPIDS. Mark has over twenty years of experience developing software for GPUs, ranging from graphics and games, to physically-based simulation, to parallel algorithms and high-performance computing. While a Ph.D. student at The University of North Carolina he recognized a nascent trend and coined a name for it: GPGPU (General-Purpose computing on Graphics Processing Units).
+Follow @harrism on Twitter
+View all posts by Mark Harris
