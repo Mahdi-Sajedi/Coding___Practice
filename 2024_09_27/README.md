@@ -36,3 +36,5 @@ For C++ questions (like what does the virtual keyword mean), the [C++ Super-FAQ]
 ## saxpy.cu
 
 [__global__](https://github.com/stanford-cs149/asst3/blob/master/saxpy/saxpy.cu#L16-L17)
+
+[CS149 TODO: allocate device memory buffers on the GPU using cudaMalloc](https://github.com/stanford-cs149/asst3/blob/master/saxpy/saxpy.cu#L72-L76)
