@@ -1,3 +1,9 @@
+[Mask R-CNN implementation](https://github.com/matterport/Mask_RCNN?tab=readme-ov-file)
+
+step-by-step for training mask R-CNN [here](https://engineering.matterport.com/splash-of-color-instance-segmentation-with-mask-r-cnn-and-tensorflow-7c761e238b46)
+
+revisited colab notebook for faster r-cnn (here)[https://colab.research.google.com/drive/1jcmUJuwh8kVx5QDELbUgS9wXGKy-UaRr?authuser=1]
+
 ### Summary:
 
 The RPN generates a set of region proposals (bounding boxes) based on the convolutional feature map
@@ -147,3 +153,19 @@ In the original paper, Faster R-CNN was trained using a multi-step approach, tra
 
 
 Object detection models, like Faster R-CNN, SSD, or YOLO, output a set of predicted bounding boxes along with confidence scores. These scores indicate how likely it is that the bounding box contains an object of a certain class.
+
+
+
+# Coding:
+```python
+>>> t = torch.tensor([1, 0, 1])
+>>> torch.argwhere(t)
+tensor([[0],
+        [2]])
+>>> t = torch.tensor([[1, 0, 1], [0, 1, 1]])
+>>> torch.argwhere(t)
+tensor([[0, 0],
+        [0, 2],
+        [1, 1],
+        [1, 2]])
+```
