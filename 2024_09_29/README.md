@@ -1,6 +1,102 @@
-[Noah Gift](https://github.com/noahgift): check resources for cloud computing?
+## [Noah Gift](https://github.com/noahgift): check resources for cloud computing?
 
-# TheCodingBug yolov7 [video](https://www.youtube.com/watch?v=_fXABNYlZhY)
+## TheCodingBug yolov7 [video](https://www.youtube.com/watch?v=_fXABNYlZhY)
 
 - GPU on colab/kaggle
 
+## RPN in RCNN
+
+[stackoverflow](https://stats.stackexchange.com/questions/561513/how-do-anchors-play-a-part-in-the-region-proposal-network-rpn-in-faster-rcnn) 
+```python
+nn.Linear(in_features=256, out_features=2*k)
+nn.Conv1d(in_channels=256, out_channels=2*k, kernel_size=1)
+```
+
+[Tryolabs blog post](https://tryolabs.com/blog/2018/01/18/faster-r-cnn-down-the-rabbit-hole-of-modern-object-detection):
+
+Probably the hardest issue with using Deep Learning (DL) for object detection is generating a variable-length list of bounding boxes. When modeling deep neural networks, the last block is usually a fixed sized tensor output (except when using Recurrent Neural Networks, but that is for another post). For example, in image classification, the output is a 
+(
+N
+,
+)
+(N,) shaped tensor, with 
+(
+N
+,
+)
+(N,) being the number of classes, where each scalar in location 
+(
+N
+,
+)
+(N,) contains the probability of that image being 
+(
+N
+,
+)
+(N,).
+
+The variable-length problem is solved in the RPN by using anchors: fixed sized reference bounding boxes which are placed uniformly throughout the original image. Instead of having to detect where objects are, we model the problem into two parts. For every anchor, we ask:
+
+Does this anchor contain a relevant object?
+How would we adjust this anchor to better fit the relevant object?
+
+### Base Network
+
+There is no real consensus on which network architecture is best. The original Faster R-CNN used ZF and VGG pretrained on ImageNet but since then there have been lots of different networks with a varying number of weights. For example, MobileNet, a smaller and efficient network architecture optimized for speed, has approximately 3.3M parameters, while ResNet-152 (yes, 152 layers), once the state of the art in the ImageNet classification competition, has around 60M. Most recently, new architectures like DenseNet are both improving results while lowering the number of parameters.
+
+#### VGG vs ResNet: 
+
+- Nowadays, ResNet architectures have mostly replaced VGG as a base network for extracting features.
+- ResNet makes it easy to train deep models with the use of residual connections and batch normalization, which was not invented when VGG was first released.
+
+
+By the time the image reaches deeper layers of the CNN, its spatial dimensions (width and height) are much smaller. The resulting matrix from these operations is called the convolutional feature map.
+
+For example:
+
+If your input image is 
+640
+×
+480
+640×480 (width × height), a CNN might downsample it by a factor of 32, resulting in a convolutional feature map that is 
+20
+×
+15
+20×15.
+
+**The position of an anchor on the feature map corresponds to a region in the original image. This relationship depends on the subsampling ratio (downsampling factor) of the convolutional network.**
+
+For example:
+
+If the original image is 
+640
+×
+480
+640×480, and the feature map is 
+20
+×
+15
+20×15, the subsampling ratio is 32. So, each anchor on the feature map represents a region in the original image that's about 
+32
+×
+32
+32×32 pixels.
+
+classification: cls_logits (expected 2*k output channels but got k=3)
+regression: bbox_pred (4*k=12 output channels)
+```
+  (rpn): RegionProposalNetwork(
+    (anchor_generator): AnchorGenerator()
+    (head): RPNHead(
+      (conv): Sequential(
+        (0): Conv2dNormActivation(
+          (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): ReLU(inplace=True)
+        )
+      )
+      (cls_logits): Conv2d(256, 3, kernel_size=(1, 1), stride=(1, 1))
+      (bbox_pred): Conv2d(256, 12, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+```
