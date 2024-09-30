@@ -1,6 +1,8 @@
-[Mask R-CNN implementation](https://github.com/matterport/Mask_RCNN?tab=readme-ov-file)
+# step-by-step for training mask R-CNN [here](https://engineering.matterport.com/splash-of-color-instance-segmentation-with-mask-r-cnn-and-tensorflow-7c761e238b46)
 
-step-by-step for training mask R-CNN [here](https://engineering.matterport.com/splash-of-color-instance-segmentation-with-mask-r-cnn-and-tensorflow-7c761e238b46)
+********************************************************************************************************************************************************************
+
+[Mask R-CNN implementation](https://github.com/matterport/Mask_RCNN?tab=readme-ov-file)
 
 revisited colab notebook for faster r-cnn (here)[https://colab.research.google.com/drive/1jcmUJuwh8kVx5QDELbUgS9wXGKy-UaRr?authuser=1]
 
