@@ -1,5 +1,8 @@
 # step-by-step for training mask R-CNN [here](https://engineering.matterport.com/splash-of-color-instance-segmentation-with-mask-r-cnn-and-tensorflow-7c761e238b46)
 
+Code Tip:
+Your dataset might not be in JSON. My BalloonDataset class reads JSON because that’s what the VIA tool generates. Don’t convert your dataset to a format similar to COCO or the VIA format. Insetad, write your own Dataset class to load whichever format your dataset comes in. **See the samples and notice how each uses its own Dataset class**
+
 ********************************************************************************************************************************************************************
 
 [Mask R-CNN implementation](https://github.com/matterport/Mask_RCNN?tab=readme-ov-file)
