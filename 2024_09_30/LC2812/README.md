@@ -207,7 +207,10 @@ If you want to learn more about 0-1 BFS:
             if it has the very next level , we can push it to the end of the queue. This
             helps us keep the queue sorted by level for the
             BFS
-            to work properly.   
+            to work properly.
+
+# Time Machine
+This was the python code i wrote a few months ago probably when i first solved it.
 ```python
 class Solution:
     def maximumSafenessFactor(self, grid: List[List[int]]) -> int:
