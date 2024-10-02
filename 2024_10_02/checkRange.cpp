@@ -1,4 +1,5 @@
 #include <iostream>
+#include <climits> // For INT_MAX
 
 using namespace std;
 
