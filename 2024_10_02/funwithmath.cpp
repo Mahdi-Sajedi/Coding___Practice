@@ -27,7 +27,7 @@ int main(){
   cout << "Hi Student! Please enter your name: ";
   cin.getline(studentName, 10);
   cout << "Hi " << studentName << ". Let\'s do some Math!" << endl;
-  cout << "What is " << Number1 << " + " << Number2 << " = ";
+  cout << "What is " << number1 << " + " << number2 << " = ";
   cin >> studentAns;
   // Range Check
   if (studentAns >= 2 && studentAns <= 18){
