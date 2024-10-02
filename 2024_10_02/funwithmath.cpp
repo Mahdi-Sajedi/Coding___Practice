@@ -37,6 +37,8 @@ int main(){
     }
     else {
       cout << "Your answer was wrong" << endl;
+      cout << "The correct answer was: " << correctAns << endl;
+      cout << "Run the prgrm again!" << endl;
     }
   }
   else {
