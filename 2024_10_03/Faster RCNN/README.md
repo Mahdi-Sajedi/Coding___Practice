@@ -1,4 +1,12 @@
-[Source](https://debuggercafe.com/a-simple-pipeline-to-train-pytorch-faster-rcnn-object-detection-model/)
+# Digging Practice :
+
+For COCO dataset (Detectron 2’s default), [load_coco_json](https://github.com/facebookresearch/detectron2/blob/main/detectron2/data/datasets/coco.py#L29-L194) function plays the role.
+
+The annotations are converted to Instances by [this](https://github.com/facebookresearch/detectron2/blob/main/detectron2/data/detection_utils.py#L234-L257) function called in the dataset mapper
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# DebuggerCafe faster RCNN impl [Source](https://debuggercafe.com/a-simple-pipeline-to-train-pytorch-faster-rcnn-object-detection-model/)
 
 ```python
 def collate_fn(batch):
@@ -22,3 +30,12 @@ Output of collate_fn:
 ```
 return (images, targets)
 ```
+
+# Detectron 2 medium post [here](https://medium.com/@hirotoschwert/digging-into-detectron-2-47b2e794fabd)
+
+The box head is one of the sub-classes of ROI Heads. For example Mask R-CNN has more ROI heads such as a mask head.
+
+FPN: One pixel of ‘P6’ feature corresponds to broader area of input image than ‘P2’- in other words ‘P6’ has a larger receptive field than ‘P2’.
+
+[Example](https://github.com/facebookresearch/detectron2/blob/e0bffda3f503bc4caa1ae2360520db3591fd291d/detectron2/modeling/backbone/resnet.py#L442) of digging
+
