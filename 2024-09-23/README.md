@@ -227,3 +227,25 @@ while (it.hasNext()) {
  System.out.println("found 126");
  }
 ```
+
+• List of Integer objects uses more memory than array of ints but is more powerful.
+
+## Set
+
+• use standard Collection methods ```addAll(), iterator(), contains()```
+
+• use standard utility methods ```addAll(), retainAll(), containsAll()``` to perform union, intersection and isSubset operations
+
+- HashSet -> constant time find and insert (Always?) and only works with String and Integer which have a ```hashCode()``` defined.
+
+- TreeSet -> an alternative to HashSet, more costly, keeps the set in sorted order, and iteration yields the values in sorted order
+
+## Map
+
+- a general interface of the basic map features
+
+- implemented by 2 main classes: HashMap (Most commonly used) and TreeMap
+
+- methods put() and get()
+
+      Object get(Object key) -- gets the value previously stored for this key, or null if there is no entry for this key in the map.
