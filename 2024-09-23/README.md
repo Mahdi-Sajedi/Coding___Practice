@@ -248,4 +248,45 @@ while (it.hasNext()) {
 
 - methods put() and get()
 
-      Object get(Object key) -- gets the value previously stored for this key, or null if there is no entry for this key in the map.
+      Object get(Object key) -> null if there is no entry for this key in the map.
+
+- Both the key and value must be object types such as String or Integer or List
+
+- It is standard to declare the variable with the general type, Map, as shown here:
+```java
+Map<String, String> states = new HashMap<String, String>();
+states.put("ca", "California");
+states.put("az", "Arizona");
+states.put("mn", "Minnesota");
+states.put("nj", "New Jersey");
+```
+
+- very fast performance: With a HashMap, even if there are 100,000 entries in the map, get() and
+put() can access a particular entry almost instantaneously (constant time).
+
+- TreeMap is slower. Uses a Red-Black tree (a type of self-balancing binary search tree).
+
+### Synchronization
+HashMap:
+
+Not synchronized (not thread-safe). You must manually synchronize it if used in a multi-threaded environment.
+
+TreeMap:
+
+Also not synchronized. Similar to HashMap, you must handle synchronization externally if needed.
+
+- values() and keySet() methods
+
+      Collection values() -- "live" read-only Collection of map values in some random order
+      Set keySet() -- "live" set of keys in the map.
+
+- Be careful! There is no separate set!! removing an element from the key set removes corresponding entry from the map. Also adding to the key set does not work and you must use put(). you can use common Collection operations for this set, like ```foreach, iterator(), add(), remove(), addAll(), removeAll()```.
+
+- entrySet() method -> provides a set of special ```Map.Entry<KEY_TYPE, VALUE_TYPE>``` objects -- Entry class is defined inside Map class -> then you can use getKey() and getValue() on those Map.Entry objects
+
+       This provides access to the entry data directly from the Map's internal data structures without the cost of calling get() for each key.
+
+       The keySet() makes the most sense where performance is important. If performance is not critical, I find the plain keySet() approach to be more readable.
+
+
+       
