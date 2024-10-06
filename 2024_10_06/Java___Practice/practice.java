@@ -42,3 +42,9 @@ Map<String, List<Integer>> map = new HashMap<String, List<Integer>>();
 List<Integer> nums = new ArrayList<Integer>();
 nums.addAll(Arrays.asList(1, 2, 3));
 map.put("1-3", nums);
+
+//
+Set<Map.Entry<String, String>> entries = states.entrySet();
+for (Map.Entry<String, String> entry: entries) {
+  System.out.println(entry.getKey() + "->" + entry.getValue());
+}
