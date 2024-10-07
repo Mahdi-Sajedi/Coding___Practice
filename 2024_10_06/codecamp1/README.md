@@ -1,7 +1,7 @@
 # CodeCamp1
 
 ## Overview
-This project, named **CodeCamp1**, was developed as part of my learning journey in Java programming and unit testing using JUnit. The main functionality includes the implementation of a `CharGrid` class that calculates the area of a specified character in a grid of characters.
+This simple homework from Stanford's CS108 [course](https://web.stanford.edu/class/archive/cs/cs108/cs108.1092/oldSite.shtml), was worked out as part of my learning journey in Java programming and especially unit testing using JUnit. The main functionality includes the implementation of a `CharGrid` class that calculates the area of the smallest rectangle containing all occurrences of a specified character in a grid of characters.
 
 ## Features
 - **CharGrid Class**: Contains methods for constructing a character grid and calculating the area for a given character.
@@ -11,26 +11,9 @@ This project, named **CodeCamp1**, was developed as part of my learning journey 
 
 ### Prerequisites
 - Java Development Kit (JDK) 21 or higher
-- JUnit 4 or 5
-- A Java IDE (e.g., Eclipse, IntelliJ, or Apache NetBeans)
+- JUnit 4 or 5. I used JUnit 5.
+- A Java IDE (e.g., Eclipse, IntelliJ, or Apache NetBeans). I used Eclipse.
 
-### Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone ...
-   cd Coding___Practice/codecamp1
-2. Compile the Java files:
-
-```bash
-javac -cp .:path/to/junit.jar CharGrid.java CharGridTest.java
-```
-3. Run the JUnit tests:
-
-```bash
-java -cp .:path/to/junit.jar:path/to/hamcrest.jar org.junit.runner.JUnitCore CharGridTest
-```
 ### Usage
 
 To use the CharGrid class, you can create an instance with a character grid, then call the charArea(char ch) method to find the area of the specified character.
