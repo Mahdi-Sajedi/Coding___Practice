@@ -1,0 +1,121 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+  pull_request:
+    branches:
+      - '*'
+
+env:
+  DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
+
+jobs:
+  Linux:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      with:
+        fetch-depth: 1
+    - name: Install GraalVM
+      uses: graalvm/setup-graalvm@22cc13fe88ef133134b3798e128fb208df55e1f5 # v1
+      with:
+        distribution: graalvm-community
+        version: 'latest'
+        java-version: '21'
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build
+      uses: ./.github/actions/main-build
+      with:
+        arguments: |
+          -Ptesting.enableJaCoCo \
+          :platform-tooling-support-tests:test \
+          build \
+          jacocoRootReport \
+          --configuration-cache
+    - name: Upload to Codecov.io
+      uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673 # v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+
+  Windows:
+    runs-on: windows-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      with:
+        fetch-depth: 1
+    - name: Build
+      uses: ./.github/actions/main-build
+
+  macOS:
+    runs-on: macos-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      with:
+        fetch-depth: 1
+    - name: Build
+      uses: ./.github/actions/main-build
+
+  publish_artifacts:
+    name: Publish Snapshot Artifacts
+    needs: linux
+    runs-on: ubuntu-latest
+    permissions:
+      attestations: write # required for build provenance attestation
+      id-token: write # required for build provenance attestation
+    if: github.event_name == 'push' && github.repository == 'junit-team/junit5' && (startsWith(github.ref, 'refs/heads/releases/') || github.ref == 'refs/heads/main')
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      with:
+        fetch-depth: 1
+    - name: Publish
+      uses: ./.github/actions/run-gradle
+      env:
+        ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
+        ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
+      with:
+        arguments: |
+          publish -x check \
+          prepareGitHubAttestation
+    - name: Generate build provenance attestations
+      uses: actions/attest-build-provenance@210c1913531870065f03ce1f9440dd87bc0938cd # v1.4.0
+      with:
+        subject-path: documentation/build/attestation/*.jar
+
+  documentation:
+    name: Build Documentation
+    concurrency:
+      group: github-pages
+      cancel-in-progress: true
+    needs: Linux
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      with:
+        fetch-depth: 1
+    - name: Install Graphviz
+      run: |
+        sudo apt-get update
+        sudo apt-get install graphviz
+    - name: Build Documentation
+      uses: ./.github/actions/run-gradle
+      with:
+        arguments: |
+          prepareDocsForUploadToGhPages \
+          -Dscan.tag.Documentation
+    - name: Upload Documentation
+      if: github.event_name == 'push' && github.repository == 'junit-team/junit5' && github.ref == 'refs/heads/main'
+      uses: ./.github/actions/run-gradle
+      with:
+        arguments: |
+          gitPublishPush \
+          -Dscan.tag.Documentation
+      env:
+        GRGIT_USER: ${{ secrets.GH_TOKEN }}
