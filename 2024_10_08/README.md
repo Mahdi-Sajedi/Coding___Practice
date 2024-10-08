@@ -33,3 +33,15 @@ Xilinx and AMD:
 Xilinx was an independent company that developed FPGAs (Field Programmable Gate Arrays) and IP cores for various applications, including video processing.
 In 2020, AMD acquired Xilinx, expanding its capabilities in hardware acceleration and programmable logic devices.
 This tutorial essentially demonstrates how raw sensor data is processed and converted into an RGB image using Xilinx hardware, a process often used in image and video processing workflows.
+
+# PIL to numpy 
+
+```python
+if format in ['BGR', 'YUV-BT.601']:
+  image = image.convert('RGB')
+if format == 'BGR':
+  image = image[:,:,-1]
+```
+
+PIL (Python Imaging Library) primarily handles images in RGB format. It does not directly support other formats like BGR or YUV.
+Therefore, even if the desired output format is BGR, the image must first be converted to RGB to ensure that PIL can work with it.
