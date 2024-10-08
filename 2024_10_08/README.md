@@ -1,4 +1,16 @@
-[cppreference: std::inner_product](https://en.cppreference.com/w/cpp/algorithm/inner_product)
+## Captum [Github](https://github.com/pytorch/captum?tab=readme-ov-file)
+
+pytorch, model interpretability
+
+- ### Look at end of readme to see 10s of papers on algorithms used in Captum
+
+## Stackexchange [link](https://stackoverflow.com/questions/70758474/pytorch-is-creating-non-empty-tensor-with-torch-emptyx-y)
+
+If you want a tensor of zeros, use torch.zeros.
+
+torch.empty allocates a tensor but it does not initialise the contents, meaning that the tensor will contain whatever data happened to occupy that region of memory already.
+
+## [cppreference: std::inner_product](https://en.cppreference.com/w/cpp/algorithm/inner_product)
 
 Notes
 The parallelizable version of this algorithm, std::transform_reduce, requires op1 and op2 to be commutative and associative, but std::inner_product makes no such requirement, and always performs the operations in the order given.
