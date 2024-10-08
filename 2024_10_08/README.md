@@ -2,3 +2,34 @@
 
 Notes
 The parallelizable version of this algorithm, std::transform_reduce, requires op1 and op2 to be commutative and associative, but std::inner_product makes no such requirement, and always performs the operations in the order given.
+
+
+# [From Sensor output to RGB image](https://adaptivesupport.amd.com/s/article/889426?language=en_US)
+
+This document explains the process of converting sensor output to an RGB image, specifically focusing on the use of Xilinx devices (now owned by AMD) for this task. Here's a breakdown:
+
+Key Points:
+Image Sensors:
+
+CCD and CMOS sensors: These are the two main types of image sensors used to capture light and convert it into electric signals.
+Pixels: The sensor is an array of pixels, where each pixel gathers photons during the exposure time, translating into intensity values.
+Color Filter Array (CFA):
+
+To capture color, sensors use a Color Filter Array (CFA) like the Bayer filter, which applies a specific color filter (Red, Green, or Blue) to each pixel.
+However, each pixel captures information for only one color, and the missing color components are calculated through a process called demosaicing.
+Demosaicing (or DeBayerization):
+
+Demosaicing reconstructs the full RGB values for each pixel by interpolating the missing color channels.
+This process is particularly important in converting the raw sensor data to a usable RGB image.
+Xilinx Devices for Demosaicing:
+
+Xilinx (now part of AMD) offers specific IP (Intellectual Property) cores like the Sensor Demosaic IP (PG286) that handle demosaicing in hardware.
+The tutorial focuses on using this IP with Vivado 2018.1 to simulate how a sensor’s raw data (Bayer format) can be converted into RGB using Xilinx devices.
+Vivado Simulation:
+
+The tutorial shows how to set up a simulation in Vivado, configure the Bayer filter, and run a behavioral simulation that converts Bayer-encoded images into RGB images.
+The simulation demonstrates the transition from an 8-bit single-channel (Bayer format) to 24-bit three-channel (RGB format).
+Xilinx and AMD:
+Xilinx was an independent company that developed FPGAs (Field Programmable Gate Arrays) and IP cores for various applications, including video processing.
+In 2020, AMD acquired Xilinx, expanding its capabilities in hardware acceleration and programmable logic devices.
+This tutorial essentially demonstrates how raw sensor data is processed and converted into an RGB image using Xilinx hardware, a process often used in image and video processing workflows.
