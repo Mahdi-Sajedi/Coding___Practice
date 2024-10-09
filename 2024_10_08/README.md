@@ -1,3 +1,7 @@
+## summed-area table [wiki](https://en.m.wikipedia.org/wiki/Summed-area_table)
+
+data structure, image processing
+
 ## opencv [image thresholding](https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html)
 
 math understood: find a threshold that minimizes within/intra class variance
