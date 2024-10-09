@@ -8,6 +8,23 @@ Exercises
 
 There are some optimizations available for Otsu's binarization. You can search and implement it.
 
+wikipedia:
+
+```python
+def otsu_intraclass_variance(image, threshold):
+    """
+    Otsu's intra-class variance.
+    If all pixels are above or below the threshold, this will throw a warning that can safely be ignored.
+    """
+    return np.nansum(
+        [
+            np.mean(cls) * np.var(image, where=cls)
+            #   weight   ·  intra-class variance
+            for cls in [image >= threshold, image < threshold]
+        ]
+    )
+```
+
 
 ## Burovka's algorithm [wikipedia](https://en.m.wikipedia.org/wiki/Borůvka%27s_algorithm)
 
