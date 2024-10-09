@@ -1,3 +1,6 @@
+## opencv [image thresholding](https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html)
+
+
 ## Burovka's algorithm [wikipedia](https://en.m.wikipedia.org/wiki/Borůvka%27s_algorithm)
 
 gready, minimum spanning tree/forest, O(ElogV)
