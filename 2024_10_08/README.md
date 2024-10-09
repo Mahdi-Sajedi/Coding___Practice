@@ -1,5 +1,13 @@
 ## opencv [image thresholding](https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html)
 
+math understood: find a threshold that minimizes within/intra class variance
+
+python implementation
+
+Exercises
+
+There are some optimizations available for Otsu's binarization. You can search and implement it.
+
 
 ## Burovka's algorithm [wikipedia](https://en.m.wikipedia.org/wiki/Borůvka%27s_algorithm)
 
