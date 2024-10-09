@@ -1,3 +1,8 @@
+## kahan summation algorithm [wiki](https://en.m.wikipedia.org/wiki/Kahan_summation_algorithm)
+
+
+try to understand. looks interesting
+
 ## summed-area table [wiki](https://en.m.wikipedia.org/wiki/Summed-area_table)
 
 data structure, image processing
