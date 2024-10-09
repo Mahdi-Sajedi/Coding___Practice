@@ -1,3 +1,8 @@
+## Burovka's algorithm [wikipedia](https://en.m.wikipedia.org/wiki/Borůvka%27s_algorithm)
+
+gready, minimum spanning tree/forest, O(ElogV)
+
+
 ## Captum [Github](https://github.com/pytorch/captum?tab=readme-ov-file)
 
 pytorch, model interpretability
