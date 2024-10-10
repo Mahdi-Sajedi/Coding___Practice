@@ -1,5 +1,7 @@
 [Colab](https://colab.research.google.com/drive/1VoYNfYDKcKRQRor98Zbf2-9VQTtGJ24k?usp=sharing) QLoRA LLM
 
+In CUDA programming, blocking refers to whether a function or operation waits for the GPU to complete its execution before allowing the CPU to proceed.
+
 PyTorch CUDA [manual]()
 
 ```python
