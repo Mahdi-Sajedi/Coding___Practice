@@ -4,3 +4,6 @@ Paper author
 Feb 28
 
 Unfortunately, the conversion or post-training quantization from existing LLMs doesn't help. This is why we train the models from scratch
+
+
+[2nd link](https://huggingface.co/1bitLLM)
