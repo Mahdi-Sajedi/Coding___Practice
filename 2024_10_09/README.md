@@ -1,5 +1,14 @@
 [Colab](https://colab.research.google.com/drive/1VoYNfYDKcKRQRor98Zbf2-9VQTtGJ24k?usp=sharing) QLoRA LLM
 
+------------------------------------------------------------------------------------------------------------------------
+
+Warning
+
+The implementation of torch.nn.parallel.DistributedDataParallel evolves over time. This design note is written based on the state as of v1.4.
+
+torch.nn.parallel.DistributedDataParallel (DDP) transparently performs distributed data parallel training. This page describes how it works and reveals implementation details.
+
+----------------------------------------------------------------
 ### TensorFloat-32 (TF32) on Ampere (and later) devices
 
 Starting in PyTorch 1.7, there is a new flag called allow_tf32. This flag defaults to True in PyTorch 1.7 to PyTorch 1.11, and False in PyTorch 1.12 and later. This flag controls whether PyTorch is allowed to use the TensorFloat32 (TF32) tensor cores, available on NVIDIA GPUs since Ampere, internally to compute matmul (matrix multiplies and batched matrix multiplies) and convolutions.
