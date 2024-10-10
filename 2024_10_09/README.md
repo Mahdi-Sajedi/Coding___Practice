@@ -1,5 +1,9 @@
 [Colab](https://colab.research.google.com/drive/1VoYNfYDKcKRQRor98Zbf2-9VQTtGJ24k?usp=sharing) QLoRA LLM
 
+### TensorFloat-32 (TF32) on Ampere (and later) devices
+
+Starting in PyTorch 1.7, there is a new flag called allow_tf32. This flag defaults to True in PyTorch 1.7 to PyTorch 1.11, and False in PyTorch 1.12 and later. This flag controls whether PyTorch is allowed to use the TensorFloat32 (TF32) tensor cores, available on NVIDIA GPUs since Ampere, internally to compute matmul (matrix multiplies and batched matrix multiplies) and convolutions.
+
 In CUDA programming, blocking refers to whether a function or operation waits for the GPU to complete its execution before allowing the CPU to proceed.
 
 - Synchronous (blocking) vs asynchronous (non-blocking) operation
