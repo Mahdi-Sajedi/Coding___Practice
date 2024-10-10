@@ -2,6 +2,8 @@
 
 In CUDA programming, blocking refers to whether a function or operation waits for the GPU to complete its execution before allowing the CPU to proceed.
 
+- Synchronous (blocking) vs asynchronous (non-blocking) operation
+
 PyTorch CUDA [manual]()
 
 ```python
