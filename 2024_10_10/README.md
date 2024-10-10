@@ -1,3 +1,7 @@
+[samadi podcast](https://m.youtube.com/watch?v=pWCIFz2t8a8)
+
+
+
 [The Era of 1-bit LLMs: All Large Language Models are in 1.58 Bits](https://huggingface.co/papers/2402.17764)
 shumingma
 Paper author
