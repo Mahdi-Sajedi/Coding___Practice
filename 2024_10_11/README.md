@@ -71,3 +71,40 @@ while (parse >> v){
 ```
 std::getline(file, buffer) reads a line from file and stores it in buffer. Lines are terminated by null character '\0'. parse will continue extracting integers until it cannot, i.e. end of line (nothing to read anymore) or seeing non-integer data (\t is fine).
 
+-----------------------------------------------------------------------------------------------------
+[CS149 Graph Assignment](https://github.com/stanford-cs149/biggraphs-ec/blob/main/common/graph.cpp)
+
+output is a file pointer to which we are writing.
+```cpp
+void store_graph_binary(const char* filename, Graph graph) {
+	FILE* output = fopen(filename, "wb");
+	
+	if (!output) {
+		fprintf(stderr, "Could not open: %s\n", filename);
+		exit(1);
+	}
+
+	int header[3];
+	header[0] = GRAPH_HEADER_TOKEN;
+	header[1] = graph->num_nodes;
+	header[2] = graph->num_edges;
+
+	if (fwrite(header, sizeof(int), 3, output) != 3) {
+		fprintf(stderr, "Error writing header.\n");
+		exit(1);
+	}
+
+	if (fwrite(graph->outgoing_starts, sizeof(int), graph->num_nodes, output) != (size_t)graph->num_nodes) {
+		fprintf(stderr, "Error writing nodes.\n");
+		exit(1);
+	}
+
+	if (fwrite(graph->outgoing_edges, sizeof(int), graph->num_edges, output) != (size_t)graph->num_edges) {
+		fprintf(stderr, "Error writing edges.\n");
+		exit(1);
+	}
+
+	fclose(output);
+}
+```
+
