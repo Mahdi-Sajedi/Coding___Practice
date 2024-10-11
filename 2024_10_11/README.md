@@ -109,7 +109,7 @@ void store_graph_binary(const char* filename, Graph graph) {
 ```
 ## OpenMP resources:
 
-- [introduction to OMP](https://ianfinlayson.net/class/cpsc425/notes/10-openmp) -> [Reductions & Parallel For](https://ianfinlayson.net/class/cpsc425/notes/11-parfor) -> [3](http://www.inf.ufsc.br/~bosco.sobral/ensino/ine5645/OpenMP_Dynamic_Scheduling.pdf)
+- [introduction to OMP](https://ianfinlayson.net/class/cpsc425/notes/10-openmp) -> [Reductions & parallel for](https://ianfinlayson.net/class/cpsc425/notes/11-parfor) -> [3](http://www.inf.ufsc.br/~bosco.sobral/ensino/ine5645/OpenMP_Dynamic_Scheduling.pdf)
 
 ```c
 #include <stdlib.h>
@@ -157,4 +157,24 @@ int main() {
 
 The reduction is specified on the ”#pragma omp parallel” line. It consists of some operator from (+ * - & | ^ && ||) and some variable, separated by a colon
 
-The goal of a reduction is to tell OpenMP that the operator needs to be applied for each thread individually, but can be done in any order
+The goal of a reduction is to tell OpenMP that the operator needs to be applied for each thread individually, but can be done in any order.
+
+### Parallel For Code Breaking Example
+
+The code breaking example is also better accomplished with a parallel for loop:
+```c
+/* try each possible shift amount */
+int found = 0, i;
+#pragma omp parallel for num_threads(26) reduction(||:found)
+for (i = 0; i < 26; i++) {
+    found = found || break_code(encrypted, length, i);
+}
+
+if (!found) {
+    printf("Text could not be cracked with this method!\n");
+}
+```
+
+This is a better method since we can now adjust the number of threads and have the work automatically re-distributed amongst the threads.
+
+Note we also use a reduction with the || operator to see if any of the threads are able to decrypt the text.
