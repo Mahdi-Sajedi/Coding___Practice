@@ -178,3 +178,5 @@ if (!found) {
 This is a better method since we can now adjust the number of threads and have the work automatically re-distributed amongst the threads.
 
 Note we also use a reduction with the || operator to see if any of the threads are able to decrypt the text.
+
+Fibonacci number generation program using for loop cannot be parallelized because of "loop carried dependence". 
