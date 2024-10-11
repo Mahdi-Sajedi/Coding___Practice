@@ -18,3 +18,33 @@ int main()
 // list initialization, intro in C++11
 // simply initialize y, p, x to 0 (also works for floats, pointers, or even objects (default constructor))
 ```
+------------------------------------------------------------------------------------------
+```cpp
+#include <algorithm>
+#include <cassert>
+#include <cstring>
+#include <string>
+ 
+extern "C" void c_func(const char* c_str)
+{
+    printf("c_func called with '%s'\n", c_str);
+}
+ 
+int main()
+{
+    std::string const s("Emplary");
+    const char* p = s.c_str();
+    assert(s.size() == std::strlen(p));
+    assert(std::equal(s.begin(), s.end(), p));
+    assert(std::equal(p, p + s.size(), s.begin()));
+    assert('\0' == *(p + s.size()));
+ 
+    c_func(s.c_str());
+}
+// c_str() returns a C-style string (const char*) which is a pointer to a null_terminated character array that represents the content of the std::string
+// C-style strings expect the string to terminate with a null character that mark the end of the string
+```
+Output:
+```cpp
+c_func called with 'Emplary'
+```
