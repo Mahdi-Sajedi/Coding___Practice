@@ -43,6 +43,16 @@ int main()
 }
 // c_str() returns a C-style string (const char*) which is a pointer to a null_terminated character array that represents the content of the std::string
 // C-style strings expect the string to terminate with a null character that mark the end of the string
+// atoi() is a C-style function; it expects a C-style string as input
+/*
+std::string buffer;
+//.
+//.
+//.
+graph->num_edges = atoi(buffer.c_str());
+*/
+// std::string is a class
+// c_str() transforms a string into a C-style string (returns a const char* pointer to the internal character array of the string ending with '\0') 
 ```
 Output:
 ```cpp
