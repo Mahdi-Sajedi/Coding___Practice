@@ -51,6 +51,7 @@ std::string buffer;
 //.
 graph->num_edges = atoi(buffer.c_str());
 */
+
 // std::string is a class
 // c_str() transforms a string into a C-style string (returns a const char* pointer to the internal character array of the string ending with '\0') 
 ```
@@ -58,3 +59,15 @@ Output:
 ```cpp
 c_func called with 'Emplary'
 ```
+-----------------------------------------------------------------------------------------------
+```cpp
+buffer = "12\t\t34 56\n";
+std::stringstream parse(buffer); // parser
+int v;
+while (parse >> v){
+  scratch[idx++] = v;
+}
+// or use parse.fail to identify failure of parsing integer
+```
+std::getline(file, buffer) reads a line from file and stores it in buffer. Lines are terminated by null character '\0'. parse will continue extracting integers until it cannot, i.e. end of line (nothing to read anymore) or seeing non-integer data (\t is fine).
+
