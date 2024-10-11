@@ -109,5 +109,52 @@ void store_graph_binary(const char* filename, Graph graph) {
 ```
 ## OpenMP resources:
 
-- [1](http://www.inf.ufsc.br/~bosco.sobral/ensino/ine5645/OpenMP_Dynamic_Scheduling.pdf)
+- [introduction to OMP](https://ianfinlayson.net/class/cpsc425/notes/10-openmp) -> [Reductions & Parallel For](https://ianfinlayson.net/class/cpsc425/notes/11-parfor) -> [3](http://www.inf.ufsc.br/~bosco.sobral/ensino/ine5645/OpenMP_Dynamic_Scheduling.pdf)
 
+```c
+#include <stdlib.h>
+#include <omp.h>
+#include <stdio.h>
+
+#define THREADS 32
+#define START 0
+#define END 100000
+
+/* the function called for each thread */
+unsigned long sum_part() {
+    /* get our thread id */
+    int id = omp_get_thread_num();
+
+    /* calculate the start and end points by evenly dividing the range */
+    unsigned long start = ((END - START) / THREADS) * id;
+    unsigned long end = start + ((END - START) / THREADS) - 1;
+
+    /* the last thread needs to do all remaining ones */
+    if (id == (THREADS - 1)) {
+        end = END;
+    }
+
+    /* do the calculation */
+    unsigned long i, sum = 0;
+    for (i = start; i <= end; i++) {
+        sum += i;
+    }
+
+    return sum;
+}
+
+int main() {
+    unsigned long global_sum = 0;
+
+    #pragma omp parallel num_threads(THREADS) reduction(+:global_sum)
+    global_sum += sum_part();
+
+    /* now all results are in */
+    printf("Final answer = %lu.\n", global_sum);
+    return 0;
+}
+```
+
+The reduction is specified on the ”#pragma omp parallel” line. It consists of some operator from (+ * - & | ^ && ||) and some variable, separated by a colon
+
+The goal of a reduction is to tell OpenMP that the operator needs to be applied for each thread individually, but can be done in any order
