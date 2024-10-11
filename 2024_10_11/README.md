@@ -107,4 +107,7 @@ void store_graph_binary(const char* filename, Graph graph) {
 	fclose(output);
 }
 ```
+## OpenMP resources:
+
+- [1](http://www.inf.ufsc.br/~bosco.sobral/ensino/ine5645/OpenMP_Dynamic_Scheduling.pdf)
 
