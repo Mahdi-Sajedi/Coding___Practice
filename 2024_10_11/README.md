@@ -224,3 +224,12 @@ omp_set_num_threads(Noofthreads);
                 }
          }
 ```
+
+## [Atomic Fetch-and-Add operation](https://en.wikipedia.org/wiki/Fetch-and-add)
+
+The motivation for having an atomic fetch-and-add is that operations that appear in programming languages as x = x + a are not safe in a concurrent system, where multiple processes or threads are running concurrently (either in a multi-processor system, or preemptively scheduled onto some single-core systems). The reason is that such an operation is actually implemented as multiple machine instructions:
+
+load x into a register;
+add a to register;
+store register value back into x.
+When one process is doing x = x + a and another is doing x = x + b concurrently, there is a data race. They might both fetch xold and operate on that, then both store their results with the effect that one overwrites the other and the stored value becomes either xold + a or xold + b, not xold + a + b as might be expected.
