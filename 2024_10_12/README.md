@@ -1,4 +1,6 @@
-Script for finding image files containing name 'cat' in a specified directory (default to home directory) and all its subdirectories, and logging those filenames in a log file.
+## Example BASH script
+
+This script finds image files containing name 'cat' (or 'CAT') in a specified directory (default to home directory) and all its subdirectories, and logs those filenames in a log file.
 ```bash
 #!/bin/bash
 
@@ -24,6 +26,14 @@ done
 echo "Search complete. Results logged in $LOG_FILE."
 
 ```
+
+## Usage:
+
+```bash
+.\find_cat_images.sh /path/to/search
+```
+
+## Functionalities
 
 - ```SEARCH_DIR="${1:-.}"```: 1 refers to first input argument. :- means in case of no argument passed to the script, use ```.```
 
