@@ -180,3 +180,47 @@ This is a better method since we can now adjust the number of threads and have t
 Note we also use a reduction with the || operator to see if any of the threads are able to decrypt the text.
 
 Fibonacci number generation program using for loop cannot be parallelized because of "loop carried dependence". 
+
+[example](https://www.tezu.ernet.in/dcompsc/facility/HPCC/hypack/openmp-hypack-2013/openmp-codes-c-lang/omp-prime-datarace-condt.c) of data race; use critical to let only one thread run that section at any moment.
+```cpp
+// some code before this 
+omp_set_num_threads(Noofthreads);
+ 
+	/* OpenMP Parallel For Directive    */
+	#pragma omp parallel for 
+   	 for (number =3 ; number < Maxnumber  ; number += 2 )
+    	{
+                 if (is_prime(number))   
+		{
+           		  Array[ Countdatarace ] = number;
+            		  Countdatarace++;  	 /* Data Race condition */
+        	}	
+   	 }
+
+
+	/* OpenMP Parallel For Directive And Critical Section */
+        #pragma omp parallel for
+         for (number =3 ; number < Maxnumber  ; number += 2 )
+        {
+                 if (is_prime(number))
+                {
+                        #pragma omp critical
+                        {
+                          Primearray[ Countparallel ] = number;
+                          Countparallel++;
+                        }
+                }
+         }
+
+
+
+        /* Serial computation */
+	 for (number =3 ; number < Maxnumber  ; number += 2 )
+        {
+                 if (is_prime(number))
+                {
+                          Check[ Count ] = number;
+                          Count++;
+                }
+         }
+```
