@@ -86,3 +86,53 @@ public:
 };
 // beats 17%, 90 ms
 ```
+## Space Optimized DP (2 vectors of size n for m by n grid)
+```cpp
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& g) {
+        int m = g.size(), n = g[0].size(), ans=0;
+        vector<int> vec(n, 0), temp(n,0);
+        for (int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                if (i==0 || j==0 || g[i][j]=='0')
+                    temp[j] = g[i][j] - '0';
+                else{
+                    temp[j] = min(temp[j-1], min(vec[j], vec[j-1])) + 1;
+                }
+                ans = max(ans, temp[j]);
+            }
+            swap(temp, vec);
+/*
+            for(int j=0; j<n; j++)
+                vec[j] = temp[j];
+*/
+        }
+        return ans*ans;
+    }   
+};
+```
+## Space Optimized (1 vector of size n and one int)
+```cpp
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& g) {
+        int m = g.size(), n = g[0].size(), ans=0;
+        vector<int> vec(n, 0);
+        int pre;
+        for (int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                int temp = vec[j];
+                if (i==0 || j==0 || g[i][j]=='0')
+                    vec[j] = g[i][j] - '0';
+                else{
+                    vec[j] = min(pre, min(vec[j], vec[j-1])) + 1;
+                }
+                pre = temp;
+                ans = max(ans, vec[j]);
+            }
+        }
+        return ans*ans;
+    }   
+};
+```
