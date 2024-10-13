@@ -136,3 +136,6 @@ public:
     }   
 };
 ```
+
+## [example](https://leetcode.com/problems/maximal-square/solutions/1632376/C++Python-6-Simple-Solution-w-Explanation-or-Optimizations-from-Brute-Force-to-DP/) of deep digging 
+
