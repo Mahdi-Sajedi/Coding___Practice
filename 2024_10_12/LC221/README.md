@@ -56,3 +56,33 @@ public:
     }   
 };
 ```
+
+## DP approach (thanks to [LCuser](https://jianchao-li.github.io/post/interpret-pytorch-models-with-captum/))
+```cpp
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& g) {
+        int m = g.size(), n = g[0].size(), ans=0;
+        vector<vector<int>> dp(m, vector<int>(n, 0));
+        
+        for (int k=0; k<n; k++){
+            dp[0][k] = (g[0][k] == '1'? 1: 0);
+            ans = max(ans, dp[0][k]);
+        }
+        for (int k=0; k<m; k++){
+            dp[k][0] = (g[k][0] == '1'? 1: 0);
+            ans = max(ans, dp[k][0]);
+        }
+        for (int i=1; i<m; i++){
+            for (int j=1; j<n; j++){
+                if (g[i][j]=='1'){
+                    dp[i][j] = min(dp[i-1][j-1], min(dp[i-1][j], dp[i][j-1])) + 1;
+                    ans = max(ans, dp[i][j]);
+                }
+            }
+        }
+        return ans*ans;
+    }   
+};
+// beats 17%, 90 ms
+```
