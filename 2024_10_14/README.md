@@ -1,0 +1,1 @@
+ Triton’s ability to leverage GPUs and CUDA-based optimizations (using TensorRT) can dramatically accelerate inference performance for computationally heavy CV tasks, such as processing high-resolution images or videos.
