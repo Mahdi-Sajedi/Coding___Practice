@@ -1,1 +1,1 @@
-[PaddleOCR](https://github.com/Jacky0111/PaddleOCR-Tutorial)
+[PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
