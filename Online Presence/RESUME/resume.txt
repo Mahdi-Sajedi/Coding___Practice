@@ -1,1 +1,10 @@
 #Yellow!
+
+[Stanford CRFM group](https://crfm.stanford.edu/2023/06/16/levanter-1_0-release.html)
+
+A few other features
+Training: Levanter uses Optax for optimization, though our new optimizer, Sofia, is coming to Levanter soon!
+Logging: Logging is done with WandB, complete with a fancy online visualization of the validation set during training.
+Checkpointing: Distributed checkpointing is supported via Google’s TensorStore library. Training can even be resumed on a different number of hosts, though this breaks reproducibility for now.
+Export: We also support exporting models to the Hugging Face Hub, with export compatible with Pytorch and Transformers via SafeTensors.
+Stability: The GPT-2 implementation uses the Mistral stability trick to improve stability during training.
