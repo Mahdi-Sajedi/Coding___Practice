@@ -31,8 +31,11 @@ r1 = y                r2 = x
 With the addition of the barriers, r1 = 0, r2 = 0 is again impossible, and Dekker’s or Peterson’s algorithm would then work correctly. There are many kinds of barriers; the details vary from system to system and are beyond the scope of this post. The point is only that barriers exist and give programmers or __language implementers__ a way to force sequentially consistent behavior at critical moments in a program.
 
 .
+
 .
+
 .
+
 Here’s the litmus test that showed what it meant for x86 to have a total store order:
 ```
 Litmus Test: Independent Reads of Independent Writes (IRIW)
@@ -47,3 +50,26 @@ On x86 (or other TSO): no.
 On ARM/POWER: yes!
 ```
 On ARM/POWER, different threads may learn about different writes in different orders. They are not guaranteed to agree about a total order of writes reaching main memory, so Thread 3 can see x change before y while Thread 4 sees y change before x.
+
+.
+
+.
+
+.
+
+Here’s a litmus test for something that can’t happen even on ARM and POWER:
+```
+Litmus Test: Coherence
+Can this program see r1 = 1, r2 = 2, r3 = 2, r4 = 1?
+(Can Thread 3 see x = 1 before x = 2 while Thread 4 sees the reverse?)
+
+// Thread 1    // Thread 2    // Thread 3    // Thread 4
+x = 1          x = 2          r1 = x         r3 = x
+                              r2 = x         r4 = x
+On sequentially consistent hardware: no.
+On x86 (or other TSO): no.
+On ARM/POWER: no.
+```
+This litmus test is like the previous one, but now both threads are writing to a single variable x instead of two distinct variables x and y. Threads 1 and 2 write conflicting values 1 and 2 to x, while Thread 3 and Thread 4 both read x twice. If Thread 3 sees x = 1 overwritten by x = 2, can Thread 4 see the opposite?
+
+The answer is no, even on ARM/POWER: threads in the system must agree about a total order for the writes to a single memory location. That is, threads must agree which writes overwrite other writes. This property is called called coherence. Without the coherence property, processors either disagree about the final result of memory or else report a memory location flip-flopping from one value to another and back to the first. It would be very difficult to program such a system.
