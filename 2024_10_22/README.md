@@ -29,3 +29,21 @@ barrier               barrier
 r1 = y                r2 = x
 ```
 With the addition of the barriers, r1 = 0, r2 = 0 is again impossible, and Dekker’s or Peterson’s algorithm would then work correctly. There are many kinds of barriers; the details vary from system to system and are beyond the scope of this post. The point is only that barriers exist and give programmers or __language implementers__ a way to force sequentially consistent behavior at critical moments in a program.
+
+.
+.
+.
+Here’s the litmus test that showed what it meant for x86 to have a total store order:
+```
+Litmus Test: Independent Reads of Independent Writes (IRIW)
+Can this program see r1 = 1, r2 = 0, r3 = 1, r4 = 0?
+(Can Threads 3 and 4 see x and y change in different orders?)
+
+// Thread 1    // Thread 2    // Thread 3    // Thread 4
+x = 1          y = 1          r1 = x         r3 = y
+                              r2 = y         r4 = x
+On sequentially consistent hardware: no.
+On x86 (or other TSO): no.
+On ARM/POWER: yes!
+```
+On ARM/POWER, different threads may learn about different writes in different orders. They are not guaranteed to agree about a total order of writes reaching main memory, so Thread 3 can see x change before y while Thread 4 sees y change before x.
