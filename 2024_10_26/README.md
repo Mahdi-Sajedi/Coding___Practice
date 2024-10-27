@@ -8,6 +8,8 @@ https://swtch.com/libtask/
 
 - [24:47](https://youtu.be/ytEkHepK08c?t=1487) no xml decoding (needs decoding:)
 
+- [31:03](https://youtu.be/ytEkHepK08c?t=1863) low-level detail description
+
 https://www.slant.co/versus/117/126/~ruby_vs_go
 
 
@@ -22,3 +24,6 @@ Bio: Max Krohn (PhD 2008) was the co-founder and CTO of TheSpark.com, SparkNotes
 
 
 
+# good websites!
+
+https://www.slant.co/tags/linux
