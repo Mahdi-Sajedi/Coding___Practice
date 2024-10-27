@@ -6,6 +6,12 @@ https://swtch.com/libtask/
 
 - [24:24](https://youtu.be/ytEkHepK08c?t=1465) xmpp
 
+- [24:47](https://youtu.be/ytEkHepK08c?t=1487) no xml decoding (needs decoding:)
+
+https://www.slant.co/versus/117/126/~ruby_vs_go
+
+
+
 ## https://calendar.csail.mit.edu/events/115704
 
 The OK Web Server and the Tame C++ Event System were both built to solve specific problems at OkCupid, but became more general research projects. And it was an offhand remark by the chief of product at OkCupid -- "why can't we just open source this whole site?" -- that helped launch a multi-year, multi-institution investigation into information flow control for web sites at the operating system level.
